@@ -32,7 +32,7 @@ self.addEventListener('fetch', event => {
           // Fallback message when offline
           return new Response(JSON.stringify({
             quote: {
-              body: "You're offline. Please connect to the internet to get new quotes.",
+              body: "You're offline 🥲 Please connect to the internet to get new quotes 😀",
               author: "QuoteApp"
             }
           }), { headers: { 'Content-Type': 'application/json' } });

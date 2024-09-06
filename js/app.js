@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function getQuote(author = "") {
     let url = "/api/quote"; // Default URL for random quote
-    
     if (author && author.trim() !== "") {
       url = `/api/quote/search?author=${encodeURIComponent(author)}`;
       console.log(`Searching for quotes by author: ${author}`);

@@ -94,3 +94,11 @@ h2 {
 #install-button:hover {
   background-color: #0056b3;
 }
+
+.container1{
+  text-align: center;  
+border: 7px solid red;  
+width: 300px;  
+height: 200px;  
+padding-top: 100px;  
+}

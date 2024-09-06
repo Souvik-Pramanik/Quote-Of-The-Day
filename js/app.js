@@ -5,8 +5,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const button = document.getElementById("button");
   const searchButton = document.getElementById("searchButton");
   const authorInput = document.getElementById("authorInput");
+  const installButton = document.getElementById("install-button");
 
-  // Array of colors for the background of the SVG frame
+  let deferredPrompt;
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    // Prevent the mini-infobar from appearing on mobile
+    e.preventDefault();
+    // Stash the event so it can be triggered later
+    deferredPrompt = e;
+    // Show the install button
+    installButton.style.display = 'block';
+
+    installButton.addEventListener('click', () => {
+      // Hide the install button
+      installButton.style.display = 'none';
+      // Show the install prompt
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the A2HS prompt');
+        } else {
+          console.log('User dismissed the A2HS prompt');
+        }
+        deferredPrompt = null;
+      });
+    });
+  });
+
   const colors = [
     "#eeb76b",
     "#FFC720",
@@ -20,21 +46,17 @@ document.addEventListener("DOMContentLoaded", () => {
     "#b8b5ff",
   ];
 
-  // Function to fetch a random quote or quotes by a specific author
   async function getQuote(author = "") {
-    let url = "/api/quote"; // Default API endpoint for random quotes
+    let url = "/api/quote"; // Calls the backend API
     
-    // If an author is provided, modify the URL for search functionality
     if (author && author.trim() !== "") {
       url = `/api/quote/search?author=${encodeURIComponent(author)}`;
       console.log(`Searching for quotes by author: ${author}`);
     }
 
     try {
-      // Fetching data from the backend
       const response = await fetch(url);
 
-      // Handling non-successful responses
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -42,24 +64,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
       console.log("API Response:", data);
 
-      // Display random quote from the search results if available
       if (data.quotes && data.quotes.length > 0) {
         const randomQuote = data.quotes[Math.floor(Math.random() * data.quotes.length)];
         quoteElm.textContent = randomQuote.body;
         authorElm.textContent = `- ${randomQuote.author}`;
-      } 
-      // Display random quote from the API if no author is searched
-      else if (!author && data.quote) {
+      } else if (!author && data.quote) {
         quoteElm.textContent = data.quote.body;
         authorElm.textContent = `- ${data.quote.author}`;
-      } 
-      // If no quotes found for the given author
-      else {
+      } else {
         quoteElm.textContent = "No quotes found for the given author.";
         authorElm.textContent = "";
       }
 
-      // Change the SVG frame color randomly
       svgFrameElm.innerHTML = `<rect x="10" y="38" width="514.577" height="195.012" fill="${colors[Math.floor(Math.random() * colors.length)]}"></rect>`;
     } catch (error) {
       quoteElm.textContent = "An error occurred while fetching the quote.";
@@ -68,10 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Event listener for the random quote button
   button.addEventListener("click", () => getQuote());
-
-  // Event listener for searching quotes by author
   searchButton.addEventListener("click", () => {
     const author = authorInput.value.trim();
     if (author) {
@@ -82,6 +95,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Initial quote load on page load
-  getQuote();
+  getQuote(); // Load a random quote on page load
 });

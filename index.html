@@ -1,0 +1,111 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#2f2f2f">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="/manifest.json">
+
+    <title>Random Quotes</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="py-4 mt-4 text-center">Quote of the Day</h1>
+
+        <div class="frame pt-2">
+            
+            <!-- svg frame -->
+            <div>
+                <svg id="svgFrame" width="531" height="259" viewBox="0 0 531 259" fill="none"></svg>
+                <svg width="531" height="259" viewBox="0 0 531 259" fill="none">
+                    <rect x="2.55799" y="29.3243" width="509.461" height="189.896" stroke="#2F2F2F"
+                        stroke-width="5.11598">
+                    </rect>
+                    <path d="M48.7131 9.177H221.706L217.104 13.0008H43.7938L48.7131 9.177Z" fill="#2F2F2F">
+                    </path>
+                    <path d="M303.265 245.104H476.258L471.655 248.928H298.345L303.265 245.104Z" fill="#2F2F2F"></path>
+                    <path d="M508.304 238.875L518.524 238.773L497.095 255.233L487.206 255.332L508.304 238.875Z"
+                        fill="#2F2F2F"></path>
+                    <path d="M21.0974 2.94821L31.3174 2.8458L9.88821 19.3056L3.59662e-05 19.4047L21.0974 2.94821Z"
+                        fill="#2F2F2F"></path>
+                    <path d="M520.502 238.802L530.722 238.7L509.293 255.16L499.405 255.259L520.502 238.802Z"
+                        fill="#2F2F2F">
+                    </path>
+                    <path d="M33.2961 2.87545L43.516 2.77305L22.0868 19.2329L12.1986 19.3319L33.2961 2.87545Z"
+                        fill="#2F2F2F"></path>
+                </svg>
+            </div>
+            <!--generated quotes-->
+            <div class="quotes text-center">
+                <p id="quote"></p>
+                <span id="author"></span>
+            </div>
+        </div>
+        <!--button section-->
+        <div class="generate text-center">
+            <div>
+                <h2 class="pt-md-5 pt-sm-2">Press the button below to get a new random quote!</h2>
+                <button id="button" class="btn btn-dark py-3 mt-3 mb-5">Get Random
+                    Quote</button>
+            </div>
+            <div class="search-author text-center">
+                <h2 class="pt-md-5 pt-sm-2">Search Quotes by Author:</h2>
+                <input type="text" id="authorInput" class="form-control mt-3" placeholder="Enter author name">
+                <button id="searchButton" class="btn btn-primary">Search Quote</button>
+            </div>
+        </div>
+        <button id="installButton" class="btn btn-success" style="display: none;">Install App</button>
+        <!--footer section-->
+        <footer>
+            <p class="footer text-center mt-2">Made With Love ♡</p>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+    <script>
+        let deferredPrompt;
+        const installButton = document.getElementById('installButton');
+      
+        window.addEventListener('beforeinstallprompt', (e) => {
+          e.preventDefault();
+          deferredPrompt = e;
+          installButton.style.display = 'block';
+      
+          installButton.addEventListener('click', (e) => {
+            installButton.style.display = 'none';
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+              if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the install prompt');
+              } else {
+                console.log('User dismissed the install prompt');
+              }
+              deferredPrompt = null;
+            });
+          });
+        });
+      </script>      
+    <script>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/service-worker.js')
+              .then(function(registration) {
+                console.log('Service Worker registered with scope:', registration.scope);
+              }, function(err) {
+                console.log('Service Worker registration failed:', err);
+              });
+          });
+        }
+      </script>      
+
+</body>
+
+</html>

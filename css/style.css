@@ -2,7 +2,7 @@ body {
   scroll-behavior: smooth;
   margin: 0;
   padding: 0;
-  background-image: url(../img/5676719.jpg);
+  background-image: url(../img/bg.jpg);
   background-position: center center;
   background-size: cover;
   font-family: "Mukta", sans-serif;
@@ -75,4 +75,22 @@ h2 {
   }
 }
 
+/* Style for the Install App button */
+#install-button {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000; /* Ensure the button is above other elements */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
+#install-button:hover {
+  background-color: #0056b3;
+}

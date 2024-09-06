@@ -21,7 +21,7 @@ export default async (req, res) => {
   } else if (req.url.startsWith('/api/quote/search')) {
     const author = req.query.author;
     try {
-      const response = await axios.get(`https://favqs.com/api/quotes/?filter=Nag-R&type=author`, {
+      const response = await axios.get(`https://favqs.com/api/quotes/?filter=${author}&type=author`, {
         headers: {
           'Authorization': `Bearer d9efc5c19c4876b2ee43d19af4dd2c46`,
         },

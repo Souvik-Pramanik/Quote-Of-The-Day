@@ -5,7 +5,10 @@ body {
   background-image: url(../img/bg.jpg);
   background-position: center center;
   background-size: cover;
-  font-family: "Mukta", sans-serif;
+  font-family: "Playwrite CU", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 h1 {

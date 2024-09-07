@@ -2,35 +2,41 @@
 
 import express from 'express';
 import axios from 'axios';
+import cors from 'cors';
 
 const app = express();
+const port = 3000;
 
-// Vercel needs this export to handle the request as a serverless function
-export default async (req, res) => {
-  if (req.url.startsWith('/api/quote')) {
-    try {
-      const response = await axios.get('https://favqs.com/api/qotd', {
-        headers: {
-          'Authorization': 'Bearer 9PddOT4PStFjpSRO23SxFg==8gnX7hMQ0YaH7hkI',
-        },
-      });
-      res.status(200).json(response.data);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching quote', error: error.message });
-    }
-  } else if (req.url.startsWith('/api/quote/search')) {
-    const author = req.query.author;
-    try {
-      const response = await axios.get(`https://favqs.com/api/quotes/?filter=${author}&type=author`, {
-        headers: {
-          'Authorization': `Bearer 9PddOT4PStFjpSRO23SxFg==8gnX7hMQ0YaH7hkI`,
-        },
-      });
-      res.status(200).json(response.data);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching quotes', error: error.message });
-    }
-  } else {
-    res.status(404).json({ message: 'Route not found' });
+app.use(cors());
+
+app.get('/api/quote', async (req, res) => {
+  try {
+    const response = await axios.get('https://favqs.com/api/qotd', {
+      headers: {
+        'Authorization': 'Bearer d9efc5c19c4876b2ee43d19af4dd2c46'
+      }
+    });
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching quote', error: error.message });
   }
-};
+});
+
+app.get('/api/quote/search', async (req, res) => {
+  const author = req.query.author;
+  try {
+    const response = await axios.get(`https://favqs.com/api/quotes/?filter=${author}&type=author`, {
+      headers: {
+        'Authorization': 'Bearer d9efc5c19c4876b2ee43d19af4dd2c46'
+      }
+    });
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching quotes', error: error.message });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
+

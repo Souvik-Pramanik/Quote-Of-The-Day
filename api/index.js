@@ -9,9 +9,9 @@ const app = express();
 export default async (req, res) => {
   if (req.url.startsWith('/api/quote')) {
     try {
-      const response = await axios.get('https://favqs.com/api/qotd', {
+      const response = await axios.get('https://api.api-ninjas.com/v1/quotes', {
         headers: {
-          'Authorization': 'Bearer d9efc5c19c4876b2ee43d19af4dd2c46',
+          'Authorization': 'Bearer 9PddOT4PStFjpSRO23SxFg==8gnX7hMQ0YaH7hkI',
         },
       });
       res.status(200).json(response.data);
@@ -21,9 +21,9 @@ export default async (req, res) => {
   } else if (req.url.startsWith('/api/quote/search')) {
     const author = req.query.author;
     try {
-      const response = await axios.get(`https://favqs.com/api/quotes/?filter=${author}&type=author`, {
+      const response = await axios.get(`https://api.api-ninjas.com/v1/quotes/?filter=${author}&type=author`, {
         headers: {
-          'Authorization': `Bearer d9efc5c19c4876b2ee43d19af4dd2c46`,
+          'Authorization': `Bearer 9PddOT4PStFjpSRO23SxFg==8gnX7hMQ0YaH7hkI`,
         },
       });
       res.status(200).json(response.data);

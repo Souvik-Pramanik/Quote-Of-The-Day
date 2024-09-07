@@ -35,6 +35,12 @@ h2 {
   transform: translateX(-50%);
   width: 450px;
   font-family: "Handjet", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 655;
+  font-style: normal;
+  font-variation-settings:
+    "ELGR" 1.9,
+    "ELSH" 16;
   font-size: 1.1rem;
 }
 .footer {

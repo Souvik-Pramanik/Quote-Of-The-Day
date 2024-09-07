@@ -1,26 +1,25 @@
-
 # 🌟 Quote Of The Day 🌟
 
 ![Demo](https://media.giphy.com/media/l0MYEqEzwMWFCg8rm/giphy.gif)
 
 Welcome to **Quote Of The Day**, a dynamic web application that brings daily inspiration to your fingertips. Whether you need a motivational boost or want to explore insightful quotes by your favorite authors, our platform is built for you. This project combines modern web design and functionality using cutting-edge technologies to deliver random quotes or author-specific quotes, with a responsive, user-friendly interface.
 
-🔗 **[Live Demo](https://quote-of-the-day-webapp.vercel.app)** 
+🔗 **[Live Demo](https://quote-of-the-day-webapp.vercel.app)**
 
 ---
 
 ## 📝 Table of Contents
 
-- [Features](#features)
-- [Technologies](#technologies)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Why This Project?](#why-this-project)
-- [Project Structure](#project-structure)
-- [Manifest & PWA](#manifest--pwa)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
+- [Features](#🎯-features)
+- [Technologies](#💻-technologies)
+- [Installation](#🚀-installation)
+- [Usage](#🛠-usage)
+- [Why This Project?](#💡-why-this-project)
+- [Project Structure](#📂-project-structure)
+- [Manifest & PWA](#📱-manifest--pwa)
+- [Deployment](#🌍-deployment)
+- [Contributing](#🤝-contributing)
+- [License](#📜-license)
 
 ---
 
@@ -31,7 +30,7 @@ Welcome to **Quote Of The Day**, a dynamic web application that brings daily ins
 - **Dynamic Background Colors:** Each quote is displayed with a randomly generated background color inside a visually appealing SVG frame.
 - **Responsive Design:** Enjoy the application on any device — mobile, tablet, or desktop.
 - **PWA Support:** Download the app and access quotes offline.
-  
+
 ---
 
 ## 💻 Technologies
@@ -154,14 +153,12 @@ Key configuration for `manifest.json`:
 This project is deployed on [Vercel](https://vercel.com/). Vercel simplifies the deployment process with automatic builds and serverless functions for handling API requests.
 
 - **Serverless Functions:** We use a simple Node.js server with Express to handle API calls to the FavQs service.
-  
+
   Key part of `vercel.json` configuration:
 
 ```json
 {
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.js" }
-  ]
+  "rewrites": [{ "source": "/api/(.*)", "destination": "/api/index.js" }]
 }
 ```
 

@@ -1,6 +1,6 @@
 # 🌟 Quote Of The Day 🌟
 
-![Demo](https://media.giphy.com/media/l0MYEqEzwMWFCg8rm/giphy.gif)
+![Demo](/img/Demo.gif)
 
 Welcome to **Quote Of The Day**, a dynamic web application that brings daily inspiration to your fingertips. Whether you need a motivational boost or want to explore insightful quotes by your favorite authors, our platform is built for you. This project combines modern web design and functionality using cutting-edge technologies to deliver random quotes or author-specific quotes, with a responsive, user-friendly interface.
 
